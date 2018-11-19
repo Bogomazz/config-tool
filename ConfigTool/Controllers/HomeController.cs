@@ -1,4 +1,3 @@
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ConfigTool.Controllers
@@ -7,7 +6,7 @@ namespace ConfigTool.Controllers
     [ApiController]
     public class HomeController : ControllerBase
     {
-        [Route("")]
+        [HttpGet("")]
         public string Index()
         {
             return "Хуйня is running";

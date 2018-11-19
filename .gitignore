@@ -9,6 +9,7 @@ nupkg/
 *.user
 *.userosscache
 *.sln.docstates
+*.log
 [Dd]ebug/
 [Dd]ebugPublic/
 [Rr]elease/
