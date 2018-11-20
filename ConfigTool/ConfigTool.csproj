@@ -2,12 +2,17 @@
 
     <PropertyGroup>
         <TargetFramework>netcoreapp2.1</TargetFramework>
+        <LangVersion>7.1</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>
         <PackageReference Include="log4net" Version="2.0.8" />
-        <PackageReference Include="Microsoft.AspNetCore.App" />
-        <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
+        <PackageReference Include="Microsoft.AspNetCore.App" Version="2.1.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\ConfigTool.Domain\ConfigTool.Domain.csproj" />
+      <ProjectReference Include="..\ConfigTool.Infrastructure\ConfigTool.Infrastructure.csproj" />
     </ItemGroup>
 
 </Project>
