@@ -1,12 +1,12 @@
 using System;
-using System.Data.SqlClient;
 using System.IO;
 using System.Reflection;
+using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
 
-namespace ConfigTool.Infrastructure.SqlServer
+namespace ConfigTool.Infrastructure.Sqlite
 {
   public class ApplicationContextDesignFactory : IDesignTimeDbContextFactory<ApplicationContext>
   {
@@ -23,9 +23,9 @@ namespace ConfigTool.Infrastructure.SqlServer
         .AddJsonFile("appsettings.json")
         .Build();
 
-      var msb = new SqlConnectionStringBuilder(configuration.GetConnectionString("Db"));
+      var msb = new SqliteConnectionStringBuilder(configuration.GetConnectionString("Db"));
       var options = new DbContextOptionsBuilder<ApplicationContext>()
-        .UseSqlServer(msb.ToString(), b => b.MigrationsAssembly("ConfigTool.Infrastructure.SqlServer"));
+        .UseSqlite(msb.ToString(), b => b.MigrationsAssembly(Assembly.GetExecutingAssembly().GetName().Name));
       Console.WriteLine(msb.ToString());
       return new ApplicationContext(options.Options);
     }
@@ -33,8 +33,8 @@ namespace ConfigTool.Infrastructure.SqlServer
     private static ApplicationContext TerminalMigrationsWorkaround()
     {
       var options = new DbContextOptionsBuilder<ApplicationContext>()
-        .UseSqlServer(DefaultConnString, b => b.MigrationsAssembly(Assembly.GetExecutingAssembly().GetName().Name));
+        .UseSqlite(DefaultConnString, b => b.MigrationsAssembly(Assembly.GetExecutingAssembly().GetName().Name));
       return new ApplicationContext(options.Options);
     }
   }
-} 
+}

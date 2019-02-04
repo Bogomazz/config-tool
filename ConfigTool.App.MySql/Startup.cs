@@ -11,11 +11,11 @@ namespace ConfigTool.App.MySql
         public Startup(IConfiguration configuration) : base(configuration)
         {
         }
-        
+
         public override void ConfigureServices(IServiceCollection services)
         {
             base.ConfigureServices(services);
-            
+
             services.AddDbContext<ApplicationContext>(options => options.UseMySql(Configuration.GetConnectionString("Db")));
         }
     }
