@@ -25,7 +25,7 @@ namespace ConfigTool.Infrastructure.SqlServer
 
       var msb = new SqlConnectionStringBuilder(configuration.GetConnectionString("Db"));
       var options = new DbContextOptionsBuilder<ApplicationContext>()
-        .UseSqlServer(msb.ToString(), b => b.MigrationsAssembly("ConfigTool.Infrastructure.SqlServer"));
+        .UseSqlServer(msb.ToString(), b => b.MigrationsAssembly(Assembly.GetExecutingAssembly().GetName().Name));
       Console.WriteLine(msb.ToString());
       return new ApplicationContext(options.Options);
     }

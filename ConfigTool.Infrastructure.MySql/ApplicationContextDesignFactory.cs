@@ -28,7 +28,7 @@ namespace ConfigTool.Infrastructure.MySql
         Database = new MySqlConnectionStringBuilder(configuration.GetConnectionString("Db")).Database
       };
       var options = new DbContextOptionsBuilder<ApplicationContext>()
-        .UseMySql(msb.ToString(), b => b.MigrationsAssembly("ConfigTool.Infrastructure.MySql"));
+        .UseMySql(msb.ToString(), b => b.MigrationsAssembly(Assembly.GetExecutingAssembly().GetName().Name));
       Console.WriteLine(msb.ToString());
       return new ApplicationContext(options.Options);
     }

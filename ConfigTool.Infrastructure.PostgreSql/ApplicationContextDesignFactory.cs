@@ -28,7 +28,7 @@ namespace ConfigTool.Infrastructure.PostgreSql
         Database = new NpgsqlConnectionStringBuilder(configuration.GetConnectionString("Db")).Database
       };
       var options = new DbContextOptionsBuilder<ApplicationContext>()
-        .UseNpgsql(msb.ToString(), b => b.MigrationsAssembly("ConfigTool.Infrastructure.PostgreSql"));
+        .UseNpgsql(msb.ToString(), b => b.MigrationsAssembly(Assembly.GetExecutingAssembly().GetName().Name));
       Console.WriteLine(msb.ToString());
       return new ApplicationContext(options.Options);
     }
